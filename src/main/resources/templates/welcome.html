@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Welcome</title>
+</head>
+<body>
+<h1 ><th:block th:text="${promptMessage.message}">message</th:block></h1>
+<div>
+    <h3>Name: Mohamad Ishratur Rahman</h3>
+    <h3>Id: 301278317</h3>
+</div>
+<div>
+    <h2>Game Rules</h2>
+    <ol>
+        <li>Guess a letter from a-z</li>
+        <li>If your guess is correct then the letter will be placed at the correct spot</li>
+        <li>If your guess is incorrect, you will loose an attempt out of 7</li>
+        <li>If you guess the word with in less than 8 incorrect guesses, you win</li>
+        <li>Otherwise, you loose</li>
+    </ol>
+</div>
+<div>
+    <form action="#" th:action="@{/game}"  method="post">
+        <button>Start Game</button>
+    </form>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Window</title>
+    <style>
+        #t1{letter-spacing: 5px}
+    </style>
+</head>
+<body>
+<div>
+    <h1>Show Game Progress Here</h1>
+</div>
+<div>
+    <h3 th:text="'Game Id: ' + ${game.Id}"></h3>
+    <h3 th:text="'Game Status: ' + ${game.status}"></h3>
+    <h3 th:text="'Incorrect Guesses ' + ${game.numberOfIncorrectGuesses}"></h3>
+    <h3 th:text="'Total Attempts: ' + ${game.numberOfGuesses}"></h3>
+    <h3 id="t1" th:text="'Word: ' + ${game.gameArrayToWord}"></h3>
+
+</div>
+<div>
+    <form action="#" th:action="@{/submitGuess}"  method="post">
+        <label for="guessLetter">Guess a Letter: </label>
+        <input type="text" id="guessLetter" name="guessLetter"><br><br>
+        <button>Enter</button>
+    </form>
+</div>
+<div>
+    <form action="#" th:action="@{/welcome}"  method="get">
+        <button >Back To Welcome Page</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>
