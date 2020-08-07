@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -40,11 +41,22 @@ public class HangmanController {
         game = new Game(Id.incrementAndGet());
         gameList.add(game);
         model.addAttribute("game", game);
-        return "game";
+        return renderView(model);
     }
     @PostMapping("/submitGuess")
-    public String submitGuessesLetter(){
-        return "";
+    public String submitGuessesLetter(@RequestParam("guessedChar") String guessedChar,Model model){
+        game.gameLogic(guessedChar.charAt(0));
+        return renderView(model);
 
+    }
+
+    private String renderView(Model model){
+/*        model.addAttribute("numberOfGuesses",game.getNumberOfGuesses());
+        model.addAttribute("status",game.getStatus());
+        model.addAttribute("numberOfIncorrectGuesses",game.getNumberOfIncorrectGuesses());
+        model.addAttribute("Id","Game " + game.getId());
+        model.addAttribute("gameArrayToWord",game.getGameArrayToWord());*/
+        model.addAttribute("game",game);
+        return "game";
     }
 }

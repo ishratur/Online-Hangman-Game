@@ -20,15 +20,17 @@ public class Game {
     private final int MAX_INCORRECT_GUESSES = 7;
     ArrayList<Character> gameArray = new ArrayList<>();
     ArrayList<Character> inputLetters = new ArrayList<>();
+    public String allInputs;
 
 
     public Game(long Id) {
         this.Id = Id;
-        this.guessedWord = getRandomWord();
+        this.guessedWord = "hello";
         this.numberOfGuesses = 0;
         this.numberOfIncorrectGuesses = 0;
         this.status = GameStatus.ACTIVE;
         gameArrayToWord = " ";
+        allInputs = " ";
         fillArray();
     }
 
@@ -40,11 +42,15 @@ public class Game {
             if (!isGameArrayMatchWord() && getNumberOfIncorrectGuesses() <= MAX_INCORRECT_GUESSES) {
 
                 inputLetters.add(c);
+                showAllInput();
                 if (isLetterInWord(c)) {
                     System.out.println("Correct Guess");
 
                     setNumberOfGuesses(inputLetters.size());
                     System.out.println("User Guessed " + inputLetters);
+                    if (isGameArrayMatchWord()){
+                        setStatus(GameStatus.WON);
+                    }
 
                 } else {
                     System.out.println("Wrong Guess");
@@ -84,12 +90,24 @@ public class Game {
     }
 
     public String showGameArray() {
+        gameArrayToWord = "";
         for (int i = 0; i < guessedWord.length(); i++) {
             gameArrayToWord = gameArrayToWord + gameArray.get(i);
         }
+        System.out.println(gameArrayToWord);
 
         return gameArrayToWord;
     }
+
+    public String showAllInput(){
+        allInputs = " ";
+        for (int i = 0; i < inputLetters.size(); i++) {
+            allInputs = allInputs + inputLetters.get(i);
+        }
+
+        return allInputs;
+    }
+
     public ArrayList<Character> getInputLetters() {
         return inputLetters;
     }
