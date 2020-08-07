@@ -1,12 +1,12 @@
 package ca.cmpt213.a4.onlinehangman.controllers;
 
 import ca.cmpt213.a4.onlinehangman.model.Game;
+import ca.cmpt213.a4.onlinehangman.model.GameStatus;
 import ca.cmpt213.a4.onlinehangman.model.Message;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -45,18 +45,55 @@ public class HangmanController {
     }
     @PostMapping("/submitGuess")
     public String submitGuessesLetter(@RequestParam("guessedChar") String guessedChar,Model model){
-        game.gameLogic(guessedChar.charAt(0));
+        game.gameLogic(Character.toLowerCase(guessedChar.charAt(0)));
         return renderView(model);
 
     }
 
-    private String renderView(Model model){
-/*        model.addAttribute("numberOfGuesses",game.getNumberOfGuesses());
-        model.addAttribute("status",game.getStatus());
-        model.addAttribute("numberOfIncorrectGuesses",game.getNumberOfIncorrectGuesses());
-        model.addAttribute("Id","Game " + game.getId());
-        model.addAttribute("gameArrayToWord",game.getGameArrayToWord());*/
-        model.addAttribute("game",game);
-        return "game";
+    @GetMapping("/game/{Id}")
+    public String findGame(@PathVariable("Id") long Id, Model model){
+        for (Game gameId: gameList ){
+            if (gameId.getId() == Id){
+                game = gameId;
+                model.addAttribute("game", game);
+                return renderView(model);
+            }
+        }
+        
+        promptMessage.setMessage("Game does not exist with Id: " + Id);
+        model.addAttribute("promptMessage", promptMessage);
+        GameNotFoundExceptionHandler(model);
+        throw new GameNotFoundException();
+
+
+
     }
+
+    public String renderView(Model model){
+        if (game.getStatus() == GameStatus.WON){
+            promptMessage.setMessage("This Game is over and you WON!");
+            model.addAttribute("promptMessage", promptMessage);
+            model.addAttribute("game", game);
+            return "gameOver";
+        }
+        else if(game.getStatus() == GameStatus.LOST){
+            promptMessage.setMessage("This Game over and you LOST!");
+            model.addAttribute("promptMessage", promptMessage);
+            model.addAttribute("game", game);
+            return "gameOver";
+        }
+        else {
+            model.addAttribute("game",game);
+            return "game";
+        }
+
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Game ID not found.")
+    @ExceptionHandler(GameNotFoundException.class)
+    public String GameNotFoundExceptionHandler(Model model) {
+
+        return "gamenotfound";
+    }
+
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Over</title>
+</head>
+<body>
+<h1 ><th:block th:text="${promptMessage.message}">message</th:block></h1>
+<h3 th:text="'The answer for this Game: ' + ${game.getGuessedWord()}"></h3>
+<div>
+    <form action="#" th:action="@{/welcome}"  method="get">
+        <button >Back To Welcome Page</button>
+    </form>
+
+</div>
+
+</body>
+</html>
