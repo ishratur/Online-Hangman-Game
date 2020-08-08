@@ -6,6 +6,17 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/*
+ * Game class models the information about a Game.
+ * This class also has all the Game logic.
+ * This class has all the Game related fields and Methods
+ * Name: Mohamad Ishratur Rahman
+ * Id: 301278317
+ * Email: mirahman@sfu.ca
+ */
+
+
+
 public class Game {
     private long Id;
     private String guessedWord;
@@ -14,21 +25,19 @@ public class Game {
     private GameStatus status;
 
 
-
     private String gameArrayToWord;
 
     private final int MAX_INCORRECT_GUESSES = 7;
-    ArrayList<Character> gameArray = new ArrayList<>();
-    ArrayList<Character> inputLetters = new ArrayList<>();
+    private ArrayList<Character> gameArray = new ArrayList<>();
+    private ArrayList<Character> inputLetters = new ArrayList<>();
     public String allInputs;
     public int duplicateCorrectGuessCounter;
     public int duplicateInCorrectGuessCounter;
 
 
-
     public Game(long Id) {
         this.Id = Id;
-        this.guessedWord = "hello";
+        this.guessedWord = getRandomWord();
         this.numberOfGuesses = 0;
         this.numberOfIncorrectGuesses = 0;
         this.status = GameStatus.ACTIVE;
@@ -49,26 +58,22 @@ public class Game {
                 inputLetters.add(c);
                 showAllInput();
                 if (isLetterInWord(c)) {
-                    System.out.println("Correct Guess");
+
                     duplicateCorrectGuess(c);
 
                     setNumberOfGuesses(inputLetters.size());
-                    System.out.println("User Guessed " + inputLetters);
-                    if (isGameArrayMatchWord()){
+                    if (isGameArrayMatchWord()) {
                         setStatus(GameStatus.WON);
                     }
 
                 } else {
-                    System.out.println("Wrong Guess");
                     duplicateInCorrectGuess(c);
                     setNumberOfIncorrectGuesses();
                     setNumberOfGuesses(inputLetters.size());
-                    System.out.println("User Guessed " + inputLetters);
-                    System.out.println("Total Wrong Guess: " + getNumberOfIncorrectGuesses());
                     if (getNumberOfIncorrectGuesses() > MAX_INCORRECT_GUESSES) {
-                        System.out.println("You lost");
+
                         setStatus(GameStatus.LOST);
-                        System.out.println("The Guess was: " + guessedWord);
+
                     }
 
                 }
@@ -78,27 +83,25 @@ public class Game {
 
     }
 
-//    https://stackoverflow.com/questions/275944/how-do-i-count-the-number-of-occurrences-of-a-char-in-a-string
-    private void duplicateCorrectGuess(Character c){
+    //    https://stackoverflow.com/questions/275944/how-do-i-count-the-number-of-occurrences-of-a-char-in-a-string
+    private void duplicateCorrectGuess(Character c) {
         long count = allInputs.chars().filter(ch -> ch == c).count();
-        if (count > 1){
+        if (count > 1) {
             duplicateCorrectGuessCounter++;
         }
 
     }
 
-    private void duplicateInCorrectGuess(Character c){
+    private void duplicateInCorrectGuess(Character c) {
         long count = allInputs.chars().filter(ch -> ch == c).count();
-        if (count > 1){
+        if (count > 1) {
             duplicateInCorrectGuessCounter++;
         }
 
     }
 
 
-
-
-    public void fillArray() {
+    private void fillArray() {
         for (int i = 0; i < guessedWord.length(); i++) {
             gameArray.add('_');
         }
@@ -116,23 +119,22 @@ public class Game {
         return counter > 0;
     }
 
-    public String showGameArray() {
+    private String showGameArray() {
         gameArrayToWord = "";
         for (int i = 0; i < guessedWord.length(); i++) {
             gameArrayToWord = gameArrayToWord + gameArray.get(i);
         }
-        System.out.println(gameArrayToWord);
+
 
         return gameArrayToWord;
     }
 
-    public void showAllInput(){
+    private void showAllInput() {
         allInputs = " ";
         for (int i = 0; i < inputLetters.size(); i++) {
             allInputs = allInputs + inputLetters.get(i);
         }
 
-//        return allInputs;
     }
 
     public ArrayList<Character> getInputLetters() {
@@ -147,7 +149,7 @@ public class Game {
                 return false;
             }
         }
-        System.out.println("You Won!");
+
         setStatus(GameStatus.WON);
         return true;
     }
@@ -183,6 +185,7 @@ public class Game {
         return randomWord;
 
     }
+
     public String getGameArrayToWord() {
         return showGameArray();
     }

@@ -1,5 +1,13 @@
 package ca.cmpt213.a4.onlinehangman.model;
 
+
+/*
+* Message class construct the desired message to send to Thymeleaf template
+ *Name: Mohamad Ishratur Rahman
+ * Id: 301278317
+ * Email: mirahman@sfu.ca
+* */
+
 public class Message {
     private String message;
 

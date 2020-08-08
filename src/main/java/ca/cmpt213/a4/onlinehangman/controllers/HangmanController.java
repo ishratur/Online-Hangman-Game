@@ -12,6 +12,19 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
+/*
+ * Controller class has all the endpoints for the application.
+ * This class also contains logic for each endpoints and
+ * handles invalid input and non-existing Game Id by throwing
+ * proper exceptions. This class also assigns unique Id to each
+ * Game.
+ * Name: Mohamad Ishratur Rahman
+ * Id: 301278317
+ * Email: mirahman@sfu.ca
+ *
+ */
+
+
 @Controller
 public class HangmanController {
 
@@ -30,7 +43,7 @@ public class HangmanController {
 
     @GetMapping({"/welcome", "/"})
     public String showWelcomePage(Model model) {
-        promptMessage.setMessage("Welcome to Hangman Game");
+        promptMessage.setMessage("CMPT 213 Online Hangman Game");
         model.addAttribute("promptMessage", promptMessage);
 
         // take the user to welcome.html

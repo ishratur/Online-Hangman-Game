@@ -1,4 +1,118 @@
-.t1{
-    letter-spacing: 5px;
 
+.t1{
+    letter-spacing: 8px;
+
+}
+
+#allChar{
+letter-spacing: 5px;
+}
+
+
+
+#welcome {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+    padding: 5px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+}
+
+.game-rules {
+    padding:20px;
+    width: 70%;
+    margin: auto;
+
+}
+.game-start-btn {
+	box-shadow:inset 0px 0px 15px 3px #23395e;
+	background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+	background-color:#2e466e;
+	border-radius:15px;
+	border:1px solid #1f2f47;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.game-start-btn:hover {
+	background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	background-color:#415989;
+}
+.game-start-btn:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
+
+
+table.purpleHorizon {
+  border: 4px solid #792396;
+  background-color: #555555;
+  width: 350px;
+  text-align: center;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto
+}
+table.purpleHorizon td, table.purpleHorizon th {
+  border: 6px solid #555555;
+  padding: 5px 2px;
+}
+table.purpleHorizon tbody td {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+table.purpleHorizon tr:nth-child(even) {
+  background: #CC3BFC;
+}
+table.purpleHorizon thead {
+  background: #792396;
+  border-bottom: 9px solid #792396;
+}
+table.purpleHorizon thead th {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 5px solid #792396;
+}
+table.purpleHorizon thead th:first-child {
+  border-left: none;
+}
+
+table.purpleHorizon tfoot td {
+  font-size: 8px;
+}
+table.purpleHorizon tfoot .links {
+  text-align: right;
+}
+table.purpleHorizon tfoot .links a{
+  display: inline-block;
+  background: #792396;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.tb5 {
+	border:2px solid #456879;
+	border-radius:10px;
+	height: 22px;
+	width: 230px;
 }

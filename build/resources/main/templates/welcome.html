@@ -2,28 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
 
-    <title>Welcome</title>
+    <title>Welcome To Hamngman Game</title>
 </head>
-<body>
-<h1 ><th:block th:text="${promptMessage.message}">message</th:block></h1>
-<div>
-    <h3>Name: Mohamad Ishratur Rahman</h3>
-    <h3>Id: 301278317</h3>
+<body id="welcome">
+<!---->
+<div class="header">
+    <h1 id="user-input-box"><th:block th:text="${promptMessage.message}">message</th:block></h1>
+    <p>Name: Mohamad Ishratur Rahman</p>
+    <p>Id: 301278317</p>
+    <p>Email: mirahman@sfu.ca</p>
 </div>
-<div>
-    <h2>Game Rules</h2>
-    <ol>
+
+<div class="game-rules">
+    <h1>Game Rules</h1>
+    <ol >
         <li>Guess a letter from a-z</li>
         <li>If your guess is correct then the letter will be placed at the correct spot</li>
         <li>If your guess is incorrect, you will loose an attempt out of 7</li>
         <li>If you guess the word with in less than 8 incorrect guesses, you win</li>
         <li>Otherwise, you loose</li>
     </ol>
-</div>
-<div>
     <form action="#" th:action="@{/game}"  method="post">
-        <button>Start Game</button>
+        <button class="game-start-btn">Start Game</button>
     </form>
 </div>
 

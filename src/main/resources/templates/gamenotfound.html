@@ -2,14 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
     <title>Game Not Found</title>
 </head>
-<body>
+<body class="header">
 <h1 ><th:block th:text="${promptMessage.message}">message</th:block></h1>
 
 <div>
     <form action="#" th:action="@{/welcome}"  method="get">
-        <button >Back To Welcome Page</button>
+        <button class="game-start-btn" >Back To Welcome Page</button>
     </form>
 
 </div>

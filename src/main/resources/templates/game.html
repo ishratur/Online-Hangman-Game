@@ -6,33 +6,53 @@
     <title>Game Window</title>
 
 </head>
-<body>
+<body class="header">
 <div>
     <h1 class="t1" th:text="'Word: ' + ${game.gameArrayToWord}">Show Game Progress Here</h1>
 </div>
-<div>
-    <h3 th:text="'Game Id: ' + ${game.Id}"></h3>
-    <h3 th:text="'Game Status: ' + ${game.status}"></h3>
-    <h3 th:text="'Incorrect Guesses ' + ${game.numberOfIncorrectGuesses}"></h3>
-    <h3 th:text="'Total Attempts: ' + ${game.numberOfGuesses}"></h3>
-    <h3 th:text="'Duplicate Correct Guesses: ' + ${game.duplicateCorrectGuessCounter}"></h3>
-    <h3 th:text="'Duplicate Incorrect Guesses: ' + ${game.duplicateInCorrectGuessCounter}"></h3>
-    <h3 class="t1" th:text="'All Chosen Letters: ' + ${game.allInputs}"></h3>
 
-</div>
+<table class="purpleHorizon">
+    <thead>
+    <tr>
+        <th>Game Id</th>
+        <th>Game Status</th>
+        <th>Incorrect Guesses</th>
+        <th>Total Attempts</th>
+        <th>Duplicate Correct Guesses</th>
+        <th>Duplicate Incorrect Guesses</th>
+        <th>All Chosen Letters</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td th:text="${game.Id}"></td>
+        <td th:text="${game.status}"></td>
+        <td th:text="${game.numberOfIncorrectGuesses}"></td>
+        <td th:text="${game.numberOfGuesses}"></td>
+        <td th:text="${game.duplicateCorrectGuessCounter}">cell4_1</td>
+        <td th:text=" ${game.duplicateInCorrectGuessCounter}">cell4_1</td>
+        <td id="allChar" th:text=" ${game.allInputs}">cell4_1</td>
+    </tr>
+
+    </tbody>
+</table>
+
+
 <div>
-    <img th:src="@{${'/images/' + game.numberOfIncorrectGuesses + '.jpg'}}" />
+    <img height="300" th:src="@{${'/images/' + game.numberOfIncorrectGuesses + '.jpg'}}" />
 </div>
 <div>
     <form action="#" th:action="@{/submitGuess}" method="post">
         <label for="guessedChar">Guess a Letter: </label>
-        <input type="text" id="guessedChar" name="guessedChar" required="required" pattern="\S+" title="No Space Allowed"><br><br>
-        <button>Enter</button>
+        <input  class="tb5" type="text" id="guessedChar" name="guessedChar"  required="required" pattern="\S+" title="No Space Allowed"><br><br>
+        <button style="display:inline" class="game-start-btn">Submit Letter</button>
     </form>
 </div>
 <div>
     <form action="#" th:action="@{/welcome}"  method="get">
-        <button >Back To Welcome Page</button>
+        <button class="game-start-btn">Back To Welcome Page</button>
     </form>
 
 </div>
