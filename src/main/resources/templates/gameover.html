@@ -8,6 +8,9 @@
 <h1 ><th:block th:text="${promptMessage.message}">message</th:block></h1>
 <h3 th:text="'The answer for this Game: ' + ${game.getGuessedWord()}"></h3>
 <div>
+    <img th:src="@{${'/images/' + game.numberOfIncorrectGuesses + '.jpg'}}" />
+</div>
+<div>
     <form action="#" th:action="@{/welcome}"  method="get">
         <button >Back To Welcome Page</button>
     </form>

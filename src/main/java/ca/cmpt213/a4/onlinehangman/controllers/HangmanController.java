@@ -59,11 +59,11 @@ public class HangmanController {
                 return renderView(model);
             }
         }
-        
+
         promptMessage.setMessage("Game does not exist with Id: " + Id);
         model.addAttribute("promptMessage", promptMessage);
-        GameNotFoundExceptionHandler(model);
-        throw new GameNotFoundException();
+
+        return "gamenotfound";
 
 
 
@@ -91,7 +91,7 @@ public class HangmanController {
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Game ID not found.")
     @ExceptionHandler(GameNotFoundException.class)
-    public String GameNotFoundExceptionHandler(Model model) {
+    public String GameNotFoundExceptionHandler() {
 
         return "gamenotfound";
     }

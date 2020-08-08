@@ -21,6 +21,9 @@ public class Game {
     ArrayList<Character> gameArray = new ArrayList<>();
     ArrayList<Character> inputLetters = new ArrayList<>();
     public String allInputs;
+    public int duplicateCorrectGuessCounter;
+    public int duplicateInCorrectGuessCounter;
+
 
 
     public Game(long Id) {
@@ -31,6 +34,8 @@ public class Game {
         this.status = GameStatus.ACTIVE;
         gameArrayToWord = " ";
         allInputs = " ";
+        duplicateCorrectGuessCounter = 0;
+        duplicateInCorrectGuessCounter = 0;
         fillArray();
     }
 
@@ -45,6 +50,7 @@ public class Game {
                 showAllInput();
                 if (isLetterInWord(c)) {
                     System.out.println("Correct Guess");
+                    duplicateCorrectGuess(c);
 
                     setNumberOfGuesses(inputLetters.size());
                     System.out.println("User Guessed " + inputLetters);
@@ -54,6 +60,7 @@ public class Game {
 
                 } else {
                     System.out.println("Wrong Guess");
+                    duplicateInCorrectGuess(c);
                     setNumberOfIncorrectGuesses();
                     setNumberOfGuesses(inputLetters.size());
                     System.out.println("User Guessed " + inputLetters);
@@ -70,6 +77,26 @@ public class Game {
 
 
     }
+
+//    https://stackoverflow.com/questions/275944/how-do-i-count-the-number-of-occurrences-of-a-char-in-a-string
+    private void duplicateCorrectGuess(Character c){
+        long count = allInputs.chars().filter(ch -> ch == c).count();
+        if (count > 1){
+            duplicateCorrectGuessCounter++;
+        }
+
+    }
+
+    private void duplicateInCorrectGuess(Character c){
+        long count = allInputs.chars().filter(ch -> ch == c).count();
+        if (count > 1){
+            duplicateInCorrectGuessCounter++;
+        }
+
+    }
+
+
+
 
     public void fillArray() {
         for (int i = 0; i < guessedWord.length(); i++) {
@@ -99,13 +126,13 @@ public class Game {
         return gameArrayToWord;
     }
 
-    public String showAllInput(){
+    public void showAllInput(){
         allInputs = " ";
         for (int i = 0; i < inputLetters.size(); i++) {
             allInputs = allInputs + inputLetters.get(i);
         }
 
-        return allInputs;
+//        return allInputs;
     }
 
     public ArrayList<Character> getInputLetters() {
