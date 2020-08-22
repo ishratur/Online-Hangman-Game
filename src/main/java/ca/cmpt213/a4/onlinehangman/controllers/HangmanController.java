@@ -18,9 +18,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * handles invalid input and non-existing Game Id by throwing
  * proper exceptions. This class also assigns unique Id to each
  * Game.
- * Name: Mohamad Ishratur Rahman
- * Id: 301278317
- * Email: mirahman@sfu.ca
  *
  */
 

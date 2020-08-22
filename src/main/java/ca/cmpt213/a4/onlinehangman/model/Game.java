@@ -10,9 +10,6 @@ import java.util.Scanner;
  * Game class models the information about a Game.
  * This class also has all the Game logic.
  * This class has all the Game related fields and Methods
- * Name: Mohamad Ishratur Rahman
- * Id: 301278317
- * Email: mirahman@sfu.ca
  */
 
 

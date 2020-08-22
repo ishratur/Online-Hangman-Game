@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /*
  * Application class starts the SpringBoot Tomcat web server on the localhost:8080
  * This class calls the Controller class to access the endpoints.
- * Name: Mohamad Ishratur Rahman
- * Id: 301278317
- * Email: mirahman@sfu.ca
  */
 
 @SpringBootApplication
